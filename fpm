@@ -1,0 +1,12 @@
+#! /bin/sh
+FILE="/sys/power/state"
+STATE="mem"
+if [[ $1 == "hibernate" ]]; then
+   STATE="disk"
+elif [[ $1 == "freeze" ]]; then
+   STATE="freeze"
+fi
+if test -f "$FILE"; then
+   $(echo $STATE >$FILE)
+fi
+
