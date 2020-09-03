@@ -7,6 +7,11 @@ if [ $# -eq 1 ]
       STATE="disk"
    elif [[ $1 == "freeze" ]]; then
       STATE="freeze"
+   else
+      echo run fpm as root to suspend
+      echo run fpm hibernate as root to hibernate
+      echo run fpm freeze as root to freeze
+      return 126
 fi
 fi
 if test -f "$FILE"; then
