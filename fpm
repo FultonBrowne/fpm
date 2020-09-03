@@ -10,6 +10,11 @@ if [ $# -eq 1 ]
 fi
 fi
 if test -f "$FILE"; then
-   $(echo $STATE >$FILE)
+   if grep -q $STATE "$FILE"; then
+      $(echo $STATE >$FILE)
+   else
+      echo action not supported
+      return 1
+   fi
 fi
 
