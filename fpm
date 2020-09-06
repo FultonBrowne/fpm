@@ -3,9 +3,9 @@ FILE="/sys/power/state"
 STATE="mem"
 if [ $# -eq 1 ]
   then
-   if [[ $1 == "hibernate" ]]; then
+   if [ "$1" = "hibernate" ]; then
       STATE="disk"
-   elif [[ $1 == "freeze" ]]; then
+   elif [ "$1" = "freeze" ]; then
       STATE="freeze"
    else
       echo run fpm as root to suspend
@@ -16,7 +16,7 @@ fi
 fi
 if test -f "$FILE"; then
    if grep -q $STATE "$FILE"; then
-      $(echo $STATE >$FILE)
+      echo $STATE > $FILE
    else
       echo action not supported
       return 1
